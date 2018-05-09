@@ -9,6 +9,16 @@ package ListasSE;
  *
  * @author Andrés
  */
-public class ListaEnlazada {
+public class Nodo {
+    public char caracter;
+    public int conteo;
+    public Nodo siguiente;
+    
+    public Nodo(char caracter){
+        this.caracter = caracter;
+        this.conteo = 1;
+        this.siguiente = null;
+    }
+ 
     
 }
