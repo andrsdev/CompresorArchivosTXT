@@ -10,7 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import arbolesbinarios.*;
+//import arbolesbinarios.*;
 import ListasSE.*;
 
 /**
@@ -50,7 +50,19 @@ public class CompresorArchivosTXT {
         
         
         lista.mostrar();
+        System.out.println();
         
+  
+ 
+        
+        Sort.quicksort(lista);
+        //Sort.selectionSort1(lista);
+        //Sort.intercambiar(lista, 0, 1);
+
+         
+         
+        lista.mostrar();
+           
     }
     
 }

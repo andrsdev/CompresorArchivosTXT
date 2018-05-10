@@ -11,9 +11,11 @@ package ListasSE;
  */
 public class ListaSE {
     Nodo cabeza;
+    int lenght;
     
     public ListaSE(){
         cabeza = null;
+        lenght = 0;
     }
     
     public boolean estaVacia(){
@@ -23,11 +25,38 @@ public class ListaSE {
     public void insertar(char c){
         if(estaVacia()){
             cabeza = new Nodo(c);
+            lenght++;
         }else if(!encontrado(c)) {
             Nodo nuevo = new Nodo(c);            
             nuevo.siguiente = cabeza;
-            cabeza = nuevo;          
+            cabeza = nuevo;   
+            lenght++;
         } 
+    }
+    
+    public Nodo getNodo(int index){
+        Nodo aux = cabeza; 
+        if(index<lenght){
+            for (int i = 0; i < index; i++) {
+                aux = aux.siguiente;
+            }
+            Nodo r = new Nodo(aux);
+            return r;
+        } else{
+            return null;
+        }      
+    }
+    
+    public void setNodo(int index, Nodo n){
+        Nodo aux = cabeza; 
+        if(index<lenght){
+            for (int i = 0; i < index; i++) {  
+                aux = aux.siguiente;
+            }
+            aux.caracter = n.caracter;
+            aux.conteo = n.conteo;
+       
+        }     
     }
     
     public boolean encontrado(char c){

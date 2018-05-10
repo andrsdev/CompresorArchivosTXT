@@ -19,6 +19,12 @@ public class Nodo {
         this.conteo = 1;
         this.siguiente = null;
     }
+    
+    public Nodo(Nodo n){
+        this.caracter = n.caracter;
+        this.conteo = n.conteo;
+        this.siguiente = n.siguiente;      
+    }
  
     
 }
