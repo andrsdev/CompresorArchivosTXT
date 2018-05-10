@@ -13,6 +13,8 @@ public class Nodo {
     public char caracter;
     public int conteo;
     public Nodo siguiente;
+    public Nodo izq;
+    public Nodo der;
     
     public Nodo(char caracter){
         this.caracter = caracter;

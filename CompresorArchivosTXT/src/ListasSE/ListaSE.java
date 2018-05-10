@@ -22,6 +22,7 @@ public class ListaSE {
         return cabeza == null;
     }
     
+    //Inserta un nuevo nodo en la cabeza de la lista
     public void insertar(char c){
         if(estaVacia()){
             cabeza = new Nodo(c);
@@ -34,6 +35,7 @@ public class ListaSE {
         } 
     }
     
+    //Devuelve una copia de un nodo por medio de su índice
     public Nodo getNodo(int index){
         Nodo aux = cabeza; 
         if(index<lenght){
@@ -47,6 +49,7 @@ public class ListaSE {
         }      
     }
     
+    //Modifica los valores de un nodo por medio de su índice
     public void setNodo(int index, Nodo n){
         Nodo aux = cabeza; 
         if(index<lenght){
@@ -58,6 +61,8 @@ public class ListaSE {
         }     
     }
     
+    //Verifica si un nodo ya existe denro de la lista. Si ya existe, se suma
+    //Al conteo de ese nodo.
     public boolean encontrado(char c){
         Nodo aux = cabeza;        
         while(aux != null){
@@ -71,6 +76,7 @@ public class ListaSE {
         return false;
     }
     
+    //Muestra la lista con los contes de cada nodo
     public void mostrar(){
         Nodo aux = cabeza;
         while(aux != null){
