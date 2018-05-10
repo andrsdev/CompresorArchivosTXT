@@ -57,8 +57,6 @@ public class CompresorArchivosTXT {
         
         Sort.quicksort(lista);
         //Sort.selectionSort1(lista);
-        //Sort.intercambiar(lista, 0, 1);
-
          
          
         lista.mostrar();

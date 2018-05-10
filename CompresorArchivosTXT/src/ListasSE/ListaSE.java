@@ -54,8 +54,7 @@ public class ListaSE {
                 aux = aux.siguiente;
             }
             aux.caracter = n.caracter;
-            aux.conteo = n.conteo;
-       
+            aux.conteo = n.conteo;     
         }     
     }
     
