@@ -47,18 +47,15 @@ public class CompresorArchivosTXT {
         catch (IOException | NumberFormatException e) {
             System.out.println("El archivo no se ha encontrado o su formato no es válido");
         }
-        
-        
-        lista.mostrar();
-        System.out.println();
-        
-  
- 
-        
+   
+        System.out.println();     
         Sort.quicksort(lista);
         //Sort.selectionSort1(lista);
-         
-         
+                
+        lista.mostrar();       
+        System.out.println();  
+       
+        lista.fusionar();
         lista.mostrar();
            
     }

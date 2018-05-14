@@ -27,6 +27,10 @@ public class Nodo {
         this.conteo = n.conteo;
         this.siguiente = n.siguiente;      
     }
+    
+    public Nodo(){
+      
+    }
  
     
 }
