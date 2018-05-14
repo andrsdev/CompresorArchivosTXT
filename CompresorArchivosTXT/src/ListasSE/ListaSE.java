@@ -10,9 +10,8 @@ package ListasSE;
  * @author Andrés
  */
 public class ListaSE {
-    Nodo cabeza;
+    public Nodo cabeza;
     int lenght;
-    Codigo[] codigos;
     
     public ListaSE(){
         cabeza = null;
@@ -119,11 +118,6 @@ public class ListaSE {
     
     //Fusiona la lista de acuerdo al algoritmo de Hoffman creando un árbol bianrio
     public void fusionar(){
-        codigos = new Codigo[lenght];
-        for (int i = 0; i < lenght; i++) {
-            codigos[i] = new Codigo(this.getNodo(i).caracter);
-        }
-        
         Nodo aux = cabeza;   
         while(lenght>1){
             aux = cabeza;
@@ -139,13 +133,6 @@ public class ListaSE {
         }       
     }
     
-    public void codificar(){
-        for (int i = 0; i < codigos.length; i++) {
-            codigos[i].codigo = this.obtenerCodigo(this.cabeza,codigos[i].caracter);
-            System.out.println(codigos[i].caracter + ": " + codigos[i].codigo);
-        }
-    }
-    
     //obtiene el código de determinado caracter de acuerdo al algoritmo de Hoffman
     public String obtenerCodigo(Nodo n, char c){
             
@@ -155,8 +142,10 @@ public class ListaSE {
             return "";
         else if(buscar(n.izq, c))
             return "0" + obtenerCodigo(n.izq, c);
-        else
+        else if(buscar(n.der, c))
             return "1" + obtenerCodigo(n.der, c);
+        else
+            return "Caracter no existe en archivo original";
     }
     
     //Busca un valor dentro del árbol
