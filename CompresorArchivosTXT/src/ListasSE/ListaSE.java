@@ -12,6 +12,7 @@ package ListasSE;
 public class ListaSE {
     Nodo cabeza;
     int lenght;
+    Codigo[] codigos;
     
     public ListaSE(){
         cabeza = null;
@@ -118,6 +119,11 @@ public class ListaSE {
     
     //Fusiona la lista de acuerdo al algoritmo de Hoffman creando un árbol bianrio
     public void fusionar(){
+        codigos = new Codigo[lenght];
+        for (int i = 0; i < lenght; i++) {
+            codigos[i] = new Codigo(this.getNodo(i).caracter);
+        }
+        
         Nodo aux = cabeza;   
         while(lenght>1){
             aux = cabeza;
@@ -130,9 +136,42 @@ public class ListaSE {
             insertarPos(nuevo, nuevo.conteo); 
             
             lenght--;
-        }
-        
+        }       
     }
+    
+    public void codificar(){
+        for (int i = 0; i < codigos.length; i++) {
+            codigos[i].codigo = this.obtenerCodigo(this.cabeza,codigos[i].caracter);
+            System.out.println(codigos[i].caracter + ": " + codigos[i].codigo);
+        }
+    }
+    
+    //obtiene el código de determinado caracter de acuerdo al algoritmo de Hoffman
+    public String obtenerCodigo(Nodo n, char c){
+            
+        if(n == null)
+            return ""; 
+        if(n.caracter == c)
+            return "";
+        else if(buscar(n.izq, c))
+            return "0" + obtenerCodigo(n.izq, c);
+        else
+            return "1" + obtenerCodigo(n.der, c);
+    }
+    
+    //Busca un valor dentro del árbol
+    public boolean buscar(Nodo n, char c){
+        if(n == null)
+            return false; 
+        if(n.caracter == c)
+            return true;
+        else if(buscar(n.izq, c))
+            return buscar(n.izq, c);
+        else
+            return buscar(n.der, c);
+    }
+
+    
     
     //Muestra la lista con los contes de cada nodo
     public void mostrar(){

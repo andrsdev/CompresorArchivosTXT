@@ -48,14 +48,16 @@ public class CompresorArchivosTXT {
             System.out.println("El archivo no se ha encontrado o su formato no es válido");
         }
    
-        System.out.println();     
-        Sort.quicksort(lista);
-        //Sort.selectionSort1(lista);
-                
-        lista.mostrar();       
-        System.out.println();  
+
        
+        
+        Sort.quicksort(lista);  
+        
+        lista.mostrar();
+        System.out.println(); 
+        
         lista.fusionar();
+        lista.codificar();
         lista.mostrar();
            
     }
