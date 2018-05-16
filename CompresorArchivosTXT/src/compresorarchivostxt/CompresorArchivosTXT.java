@@ -5,15 +5,10 @@
  */
 package compresorarchivostxt;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
-
-//import arbolesbinarios.*;
 import ListasSE.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+
 
 /**
  *
@@ -25,11 +20,16 @@ public class CompresorArchivosTXT {
     public static String inputPath = System.getProperty("user.dir") + "\\files\\archivo.txt";
     public static String outputPath = System.getProperty("user.dir") + "\\files\\archivoComprimido.txt";
     
-    public static BufferedReader br = null;
-    public static BufferedWriter bw= null;
+    public static String txtOriginal = "";
+    public static String txtBinario = "";
+    
+    
+    public static long tamanoOriginal =0;
+    public static long tamanoCompreso =0;
+    
     
     public static void main(String[] args) {
-         
+
         leer();
         Sort.quicksort(lista);  
         lista.fusionar();        
@@ -38,20 +38,22 @@ public class CompresorArchivosTXT {
     }
     
     public static void leer(){
-        br= null;
+        BufferedReader br = null;
         //Lectura de archivo.txt y creación de la lista.
         try {      
-            br = new BufferedReader(new FileReader(inputPath));   
+            File inputFile = new File(inputPath);
+            br = new BufferedReader(new FileReader(inputFile));   
             String line = br.readLine();
             
             while (line != null) {
                 for (int i = 0; i < line.length(); i++) {
-                    lista.insertar(line.charAt(i));                  
+                    lista.insertar(line.charAt(i)); 
+                    txtOriginal+= line.charAt(i);
                 }
                 
                 line = br.readLine();    
             }
-
+            tamanoOriginal = inputFile.length();
             br.close();
 
         } 
@@ -62,32 +64,47 @@ public class CompresorArchivosTXT {
     }
     
     public static void escribir(){
-        br=null;
-        bw=null;
+        FileOutputStream bw= null;
         
-        try {      
-            br = new BufferedReader(new FileReader(inputPath));   
-            bw = new BufferedWriter(new FileWriter(outputPath));
-            String line = br.readLine();
+       
+        //COnvertimos el texto original a binario
+        for (int i = 0; i < txtOriginal.length(); i++) {
+            txtBinario+=lista.obtenerCodigo(lista.cabeza,txtOriginal.charAt(i)) ;
+        }
+        
+        
+        //Escribimos en el nuevo archivo en bytes el texto binario
+        try {       
+            File outputFile = new File(outputPath);
+            bw = new FileOutputStream(outputFile);
             
-            while (line != null) {
-                for (int i = 0; i < line.length(); i++) {
-                    //byte b = Byte.parseByte(line)
-                    bw.write(lista.obtenerCodigo(lista.cabeza,line.charAt(i)) );
-                }
-                
-                line = br.readLine();  
-                bw.newLine();
+            for (int i = 0; i < txtBinario.length()-8; i+= 8) {
+                byte b = (byte) Integer.parseInt(txtBinario.substring(i, i+8));
+                bw.write(b);
             }
-
-            br.close();
+            tamanoCompreso = outputFile.length();
             bw.close();
 
         } 
         catch (IOException | NumberFormatException e) {
-            System.out.println("El archivo no se ha encontrado o su formato no es válido");
-            
+            System.out.println("El archivo no se ha encontrado o su formato no es válido");           
         }    
+        
+
+                   
+        
+        System.out.println("El texto original es: ");
+        System.out.println(txtOriginal);
+        System.out.println("Tamaño en bytes: " + tamanoOriginal);
+        
+        System.out.println();
+        
+        System.out.println("El texto en bits es: ");
+        System.out.println(txtBinario);
+        System.out.println("Tamaño en bytes: " + tamanoCompreso);
+        
+        
+        
     }
     
 }
