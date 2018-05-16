@@ -55,7 +55,11 @@ public class CompresorArchivosTXT {
         System.out.println(); 
         
         lista.fusionar();
-        System.out.println(lista.obtenerCodigo(lista.cabeza, 'b'));
+        System.out.println(lista.obtenerCodigo(lista.cabeza, 'a'));
+        System.out.println(lista.obtenerCodigo(lista.cabeza, ' '));
+        System.out.println(lista.obtenerCodigo(lista.cabeza, 'l'));
+        System.out.println(lista.obtenerCodigo(lista.cabeza, 'c'));
+        System.out.println(lista.obtenerCodigo(lista.cabeza, 't'));
         lista.mostrar();
            
     }
