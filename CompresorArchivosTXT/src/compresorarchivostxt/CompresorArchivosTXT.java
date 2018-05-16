@@ -72,6 +72,7 @@ public class CompresorArchivosTXT {
             
             while (line != null) {
                 for (int i = 0; i < line.length(); i++) {
+                    //byte b = Byte.parseByte(line)
                     bw.write(lista.obtenerCodigo(lista.cabeza,line.charAt(i)) );
                 }
                 
