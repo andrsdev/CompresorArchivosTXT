@@ -12,6 +12,8 @@ import java.util.Scanner;
 
 //import arbolesbinarios.*;
 import ListasSE.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 /**
  *
@@ -25,8 +27,10 @@ public class CompresorArchivosTXT {
         
         ListaSE lista = new ListaSE();
         String inputPath = System.getProperty("user.dir") + "\\files\\archivo.txt";
-     
+        String outputPath = System.getProperty("user.dir") + "\\files\\archivoComprimido.txt";
+        
         BufferedReader br = null;
+        BufferedWriter bw= null;
         
         //Lectura de archivo.txt y creación de la lista.
         try {      
@@ -61,7 +65,35 @@ public class CompresorArchivosTXT {
         System.out.println(lista.obtenerCodigo(lista.cabeza, 'c'));
         System.out.println(lista.obtenerCodigo(lista.cabeza, 't'));
         lista.mostrar();
-           
+        
+        
+     
+        br=null;
+        bw=null;
+        
+        try {      
+            br = new BufferedReader(new FileReader(inputPath));   
+            bw = new BufferedWriter(new FileWriter(outputPath));
+            String line = br.readLine();
+            
+            while (line != null) {
+                for (int i = 0; i < line.length(); i++) {
+                    bw.write(lista.obtenerCodigo(lista.cabeza,line.charAt(i)) );
+                }
+                
+                line = br.readLine();  
+                bw.newLine();
+            }
+
+            br.close();
+            bw.close();
+
+        } 
+        catch (IOException | NumberFormatException e) {
+            System.out.println("El archivo no se ha encontrado o su formato no es válido");
+            
+        }
+        lista.mostrar();
     }
     
 }
