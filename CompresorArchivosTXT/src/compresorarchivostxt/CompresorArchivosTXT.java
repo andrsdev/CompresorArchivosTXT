@@ -20,18 +20,25 @@ import java.io.FileWriter;
  * @author Andrés Sanabria y Erick Salazar
  */
 public class CompresorArchivosTXT {
-   
- 
+    
+    public static ListaSE lista = new ListaSE();
+    public static String inputPath = System.getProperty("user.dir") + "\\files\\archivo.txt";
+    public static String outputPath = System.getProperty("user.dir") + "\\files\\archivoComprimido.txt";
+    
+    public static BufferedReader br = null;
+    public static BufferedWriter bw= null;
     
     public static void main(String[] args) {
-        
-        ListaSE lista = new ListaSE();
-        String inputPath = System.getProperty("user.dir") + "\\files\\archivo.txt";
-        String outputPath = System.getProperty("user.dir") + "\\files\\archivoComprimido.txt";
-        
-        BufferedReader br = null;
-        BufferedWriter bw= null;
-        
+         
+        leer();
+        Sort.quicksort(lista);  
+        lista.fusionar();        
+        escribir();
+
+    }
+    
+    public static void leer(){
+        br= null;
         //Lectura de archivo.txt y creación de la lista.
         try {      
             br = new BufferedReader(new FileReader(inputPath));   
@@ -51,23 +58,10 @@ public class CompresorArchivosTXT {
         catch (IOException | NumberFormatException e) {
             System.out.println("El archivo no se ha encontrado o su formato no es válido");
         }
+        
+    }
     
-        
-        Sort.quicksort(lista);  
-        
-        lista.mostrar();
-        System.out.println(); 
-        
-        lista.fusionar();
-        System.out.println(lista.obtenerCodigo(lista.cabeza, 'a'));
-        System.out.println(lista.obtenerCodigo(lista.cabeza, ' '));
-        System.out.println(lista.obtenerCodigo(lista.cabeza, 'l'));
-        System.out.println(lista.obtenerCodigo(lista.cabeza, 'c'));
-        System.out.println(lista.obtenerCodigo(lista.cabeza, 't'));
-        lista.mostrar();
-        
-        
-     
+    public static void escribir(){
         br=null;
         bw=null;
         
@@ -92,8 +86,7 @@ public class CompresorArchivosTXT {
         catch (IOException | NumberFormatException e) {
             System.out.println("El archivo no se ha encontrado o su formato no es válido");
             
-        }
-        lista.mostrar();
+        }    
     }
     
 }
