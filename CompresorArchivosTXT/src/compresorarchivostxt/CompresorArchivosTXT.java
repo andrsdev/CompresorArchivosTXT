@@ -34,6 +34,7 @@ public class CompresorArchivosTXT {
         Sort.quicksort(lista);  
         lista.fusionar();        
         escribir();
+        imprimirSalida();
 
     }
     
@@ -89,10 +90,9 @@ public class CompresorArchivosTXT {
         catch (IOException | NumberFormatException e) {
             System.out.println("El archivo no se ha encontrado o su formato no es válido");           
         }    
-        
-
-                   
-        
+    }
+    
+    public static void imprimirSalida(){
         System.out.println("El texto original es: ");
         System.out.println(txtOriginal);
         System.out.println("Tamaño en bytes: " + tamanoOriginal);
@@ -103,8 +103,12 @@ public class CompresorArchivosTXT {
         System.out.println(txtBinario);
         System.out.println("Tamaño en bytes: " + tamanoCompreso);
         
+        System.out.println();
         
-        
+        System.out.println("--------------------------------------");
+        long porcentaje = 100*(tamanoOriginal - tamanoCompreso)/tamanoOriginal;
+        System.out.println("Porcentaje de compresión: "+porcentaje + "%");
+        System.out.println("--------------------------------------");
     }
     
 }
